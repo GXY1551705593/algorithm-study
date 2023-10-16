@@ -12,6 +12,8 @@
      * @param {number[]} nums2
      * @param {number} n
      * @return {void} Do not return anything, modify nums1 in-place instead.
+     * Idea: Using the idea of stack, pop up the data in excess positions of nums1,
+     *      press the data in nums2 into nums1, and sort and output nums1
      */
     const merge = function (nums1, m, nums2, n) {
         const len = nums1.length - m
