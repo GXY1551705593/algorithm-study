@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /**
+   * @param {number[]} nums
+   * @param {number} val
+   * @return {number}
+   * idea: Double pointer algorithm
+   */
+  const removeElement = function (nums, val) {
+    let len = nums.length, n = 0
+    for (let i = 0; i < len; i++) {
+      if (nums[i] !== val) {
+        nums[n] = nums[i]
+        n++
+      }
+    }
+    console.log(nums)
+    return n
+  };
+  removeElement([0,1,2,2,3,0,4,2],2)
+</script>
+</body>
+</html>
