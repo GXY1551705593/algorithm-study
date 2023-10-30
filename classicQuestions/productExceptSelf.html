@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 除自身以外数组的乘积</title>
+</head>
+<body>
+<script>
+    /**
+     * @param {number[]} nums
+     * @return {number[]}
+     */
+    const productExceptSelf = function (nums) {
+        let i = 0,newNums = []
+        while (i<nums.length){
+            let num = 1
+            for (let j = 0; j < nums.length; j++) {
+                if (i!==j){
+                    num = nums[j] * num
+                }
+            }
+            newNums.push(num===0?0:num)
+            i++
+        }
+    };
+    let nums = [-1,1,0,-3,3]
+    productExceptSelf(nums)
+</script>
+</body>
+</html>
