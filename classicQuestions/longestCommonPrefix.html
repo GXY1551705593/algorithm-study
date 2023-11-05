@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>最长公共前缀</title>
+</head>
+<body>
+<pre>
+    编写一个函数来查找字符串数组中的最长公共前缀。
+如果不存在公共前缀，返回空字符串 ""。
+
+示例 1：
+
+输入：strs = ["flower","flow","flight"]
+输出："fl"
+示例 2：
+
+输入：strs = ["dog","racecar","car"]
+输出：""
+解释：输入不存在公共前缀。
+</pre>
+<script>
+    /**
+     * @param {string[]} strs
+     * @return {string}
+     */
+    const longestCommonPrefix = function (strs) {
+        let str = '',i = 0,word = strs[0]
+        while (i<word.length){
+            let count = 0;
+            for (const el of strs) {
+                if (el[i]===word[i]) count++
+            }
+            if (count===strs.length) {
+                str+=word[i]
+            } else {
+                return str
+            }
+            i++
+        }
+        return str
+    };
+    let strs = ["flower","flower","flower","flower"]
+    longestCommonPrefix(strs)
+</script>
+</body>
+</html>
