@@ -39,6 +39,31 @@
     };
     let nums = [-1,1,0,-3,3]
     productExceptSelf(nums)
+
+    /**
+     * @param {number[]} nums
+     * @return {number[]}
+     * 解法二：
+     */
+    const productExceptSelf2 = function (nums) {
+        let i = 0,newNums = []
+        while (i<nums.length){
+            let num = 1
+            for (let j = 0; j < nums.length; j++) {
+                if (i!==j){
+                    if(nums[j]===0){
+                        num = 0
+                        break
+                    }else{
+                        num = nums[j] * num
+                    }
+                }
+            }
+            newNums.push(num)
+            i++
+        }
+        return newNums
+    };
 </script>
 </body>
 </html>
