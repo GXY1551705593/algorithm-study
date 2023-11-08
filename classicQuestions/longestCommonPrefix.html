@@ -25,6 +25,7 @@
      * @return {string}
      */
     const longestCommonPrefix = function (strs) {
+        if (strs.includes('')) return  ''
         let str = '',i = 0,word = strs[0]
         while (i<word.length){
             let count = 0;
