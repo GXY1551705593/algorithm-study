@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单词规律</title>
+</head>
+<body>
+<pre>
+    给定一种规律 pattern 和一个字符串 s ，判断 s 是否遵循相同的规律。
+这里的 遵循 指完全匹配，例如， pattern 里的每个字母和字符串 s 中的每个非空单词之间存在着双向连接的对应规律。
+
+示例1:
+
+输入: pattern = "abba", s = "dog cat cat dog"
+输出: true
+示例 2:
+
+输入:pattern = "abba", s = "dog cat cat fish"
+输出: false
+示例 3:
+
+输入: pattern = "aaaa", s = "dog cat cat dog"
+输出: false
+</pre>
+<script>
+    /**
+     * @param {string} pattern
+     * @param {string} s
+     * @return {boolean}
+     */
+    /**
+     * @param {string} pattern
+     * @param {string} s
+     * @return {boolean}
+     */
+    const wordPattern = function (pattern, s) {
+        const patternMap = new Map, sMap = new Map, sList = s.split(' ');
+        if (pattern.length !== sList.length) return false
+        for (let i = 0; i < pattern.length; i++) {
+            !patternMap.get(pattern[i]) && patternMap.set(pattern[i], sList[i]);
+            !sMap.get(sList[i]) && sMap.set(sList[i], pattern[i]);
+            if ((patternMap.get(pattern[i]) && patternMap.get(pattern[i]) !== sList[i]) || (sMap.get(sList[i]) && sMap.get(sList[i]) !== pattern[i])) {
+                return false
+            }
+        }
+        return true
+    };
+    let pattern = "abba",s = "dog constructor constructor dog";
+    console.log(wordPattern(pattern, s))
+</script>
+</body>
+</html>
