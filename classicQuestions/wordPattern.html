@@ -27,20 +27,20 @@
      * @param {string} pattern
      * @param {string} s
      * @return {boolean}
-     */
-    /**
-     * @param {string} pattern
-     * @param {string} s
-     * @return {boolean}
+     * 哈希表
      */
     const wordPattern = function (pattern, s) {
-        const patternMap = new Map, sMap = new Map, sList = s.split(' ');
-        if (pattern.length !== sList.length) return false
+        const patternMap = new Map,sMap= new Map, sList = s.split(' ');
+        if(pattern.length !== sList.length) return false
         for (let i = 0; i < pattern.length; i++) {
-            !patternMap.get(pattern[i]) && patternMap.set(pattern[i], sList[i]);
-            !sMap.get(sList[i]) && sMap.set(sList[i], pattern[i]);
-            if ((patternMap.get(pattern[i]) && patternMap.get(pattern[i]) !== sList[i]) || (sMap.get(sList[i]) && sMap.get(sList[i]) !== pattern[i])) {
-                return false
+            if(!patternMap.get(pattern[i])) {
+                patternMap.set(pattern[i],sList[i]);
+            }
+            if (!sMap.get(sList[i])) {
+                sMap.set(sList[i],pattern[i]);
+            }
+            if ((patternMap.get(pattern[i]) && patternMap.get(pattern[i]) !== sList[i]) || (sMap.get(sList[i]) && sMap.get(sList[i]) !== pattern[i])){
+                return  false
             }
         }
         return true
