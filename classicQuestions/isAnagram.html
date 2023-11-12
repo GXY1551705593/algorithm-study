@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>有效的字母异位词</title>
+</head>
+<body>
+<pre>
+    给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。
+
+示例 1:
+输入: s = "anagram", t = "nagaram"
+输出: true
+
+示例 2:
+输入: s = "rat", t = "car"
+输出: false
+</pre>
+<script>
+    /**
+     * @param {string} s
+     * @param {string} t
+     * @return {boolean}
+     * 哈希表
+     */
+    const isAnagram = function (s, t) {
+        if (s.length !== t.length) return false
+        let sMap = {}, tMap = {}, maxLen = s.length
+        for (let i = 0; i < maxLen; i++) {
+            let x = s[i], y = t[i];
+            if (!sMap[x]) {
+                if (x) sMap[x] = 1
+            } else {
+                sMap[x] += 1
+            }
+            if (!tMap[y]) {
+                if (y) tMap[y] = 1
+            } else {
+                tMap[y] += 1
+            }
+        }
+        for (let i = 0; i < s.length; i++) {
+            if (tMap[s[i]] !== sMap[s[i]]) return false
+        }
+        return true
+    };
+</script>
+</body>
+</html>
