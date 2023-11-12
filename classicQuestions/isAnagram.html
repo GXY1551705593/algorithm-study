@@ -26,8 +26,8 @@
      */
     const isAnagram = function (s, t) {
         if (s.length !== t.length) return false
-        let sMap = {}, tMap = {}, maxLen = s.length
-        for (let i = 0; i < maxLen; i++) {
+        let sMap = {}, tMap = {}
+        for (let i = 0; i < s.length; i++) {
             let x = s[i], y = t[i];
             if (!sMap[x]) {
                 if (x) sMap[x] = 1
@@ -40,6 +40,7 @@
                 tMap[y] += 1
             }
         }
+        if (Object.keys(sMap).length !== Object.keys(tMap).length) return false
         for (let i = 0; i < s.length; i++) {
             if (tMap[s[i]] !== sMap[s[i]]) return false
         }
