@@ -40,6 +40,25 @@
         }
         return list
     };
+
+    /**
+     * 解法优化
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[]}
+     * 利用哈希法一次遍历完成
+     */
+    var twoSum2 = function(nums, target) {
+        let map = {}
+        for(let i=0;i<nums.length;i++){
+            const key = target - nums[i];
+            if(map[key]!==undefined){
+                return [map[key],i]
+            }else{
+                map[nums[i]] = i;
+            }
+        }
+    };
 </script>
 </body>
 </html>
