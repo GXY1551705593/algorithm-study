@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快乐数</title>
+</head>
+<body>
+<pre>
+  编写一个算法来判断一个数 n 是不是快乐数。
+
+「快乐数」 定义为：
+
+对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。
+然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。
+如果这个过程 结果为 1，那么这个数就是快乐数。
+如果 n 是 快乐数 就返回 true ；不是，则返回 false 。
+
+
+
+示例 1：
+输入：n = 19
+输出：true
+解释：
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+
+示例 2：
+输入：n = 2
+输出：false
+</pre>
+<script>
+  /**
+   * @param {number} n
+   * @return {boolean}
+   * 核心思路： 将数字n最终处理成个位数，已知道1和7是快乐数。判断最终结果是否等于他们就行
+   */
+  var isHappy = function(n) {
+    const happyNums = [1,7]
+    if(happyNums.includes(n)) return true
+
+    while(n>=10){
+      let total = 0
+      let strNum =  String(n);
+      const len = strNum.length
+      for(let i=0;i<len;i++){
+        total+=strNum[i]**2
+      }
+      n=total
+    }
+    return happyNums.includes(n)
+  };
+</script>
+</body>
+</html>
