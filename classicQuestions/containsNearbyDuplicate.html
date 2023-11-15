@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>存在重复元素 II</title>
+</head>
+<body>
+<pre>
+    给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个 不同的索引 i 和 j ，满足 nums[i] == nums[j] 且 abs(i - j) <= k 。
+如果存在，返回 true ；否则，返回 false 。
+
+示例 1：
+输入：nums = [1,2,3,1], k = 3
+输出：true
+
+示例 2：
+输入：nums = [1,0,1,1], k = 1
+输出：true
+
+示例 3：
+输入：nums = [1,2,3,1,2,3], k = 2
+输出：false
+</pre>
+<script>
+    /**
+     * @param {number[]} nums
+     * @param {number} k
+     * @return {boolean}
+     * 利用哈希法
+     */
+    const containsNearbyDuplicate = function (nums, k) {
+        const map = {};
+        for (let i = 0; i < nums.length; i++) {
+            const key = nums[i];
+            if (map[key]) {
+                map[key].push(i);
+            } else {
+                map[key] = [i];
+            }
+            const list = map[key];
+            if (list.length >= 2 && Math.abs(list[list.length - 1] - list[list.length - 2]) <= k) {
+                return true
+            }
+        }
+        return false
+    };
+
+    /**
+     * @param {number[]} nums
+     * @param {number} k
+     * @return {boolean}
+     * 利用哈希法
+     */
+    const containsNearbyDuplicate2 = function (nums, k) {
+        const map = {};
+        for (let i = 0; i < nums.length; i++) {
+            const key = nums[i];
+            if (map[key]) {
+                map[key].push(i);
+            } else {
+                map[key] = [i];
+            }
+            const list = map[key];
+            if (list.length >= 2 && Math.abs(list[list.length - 1] - list[list.length - 2]) <= k) {
+                return true
+            }
+        }
+        return false
+    };
+
+    /**
+     * @param {number[]} nums
+     * @param {number} k
+     * @return {boolean}
+     * 利用哈希法
+     */
+    const containsNearbyDuplicate3 = function (nums, k) {
+        const map = {};
+        for (let i = 0; i < nums.length; i++) {
+            const key = nums[i];
+            if (map[key] !== undefined) {
+                if (Math.abs(i - map[key]) <= k) {
+                    return true
+                } else {
+                    map[key] = i
+                }
+            } else {
+                map[key] = i;
+            }
+        }
+        return false
+    };
+
+
+</script>
+</body>
+</html>
