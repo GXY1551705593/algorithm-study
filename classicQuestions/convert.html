@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>N 字形变换</title>
+</head>
+<body>
+
+<script>
+    /**
+     * @param {string} s
+     * @param {number} numRows
+     * @return {string}
+     */
+    /**
+     * @param {string} s
+     * @param {number} numRows
+     * @return {string}
+     */
+    const convert = function (s, numRows) {
+        // 字符传长度为1或者字符串长度小于等于行数或者行数等于1，直接返回字符串
+        if (s.length === 1 || s <= numRows || numRows === 1) return s
+
+        // 建立一个空数组，长度为行数，每行添加一个字符串，最后将其拼接
+        let rows = new Array(numRows).fill(''), isDown = false, rowIndex = 0
+        for (let i = 0; i < s.length; i++) {
+            rows[rowIndex] += s[i]
+            if (rowIndex === 0 || numRows - 1 === rowIndex) {
+                isDown = !isDown
+            }
+            if (isDown) {
+                rowIndex += 1
+            } else {
+                rowIndex -= 1
+            }
+        }
+        return rows.join('')
+    };
+
+</script>
+</body>
+</html>
