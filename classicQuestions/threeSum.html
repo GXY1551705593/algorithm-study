@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三数之和</title>
+</head>
+<body>
+<pre>
+    给你一个整数数组 nums ，判断是否存在三元组 [cur, nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 cur + nums[j] + nums[k] == 0 。请
+你返回所有和为 0 且不重复的三元组。
+注意：答案中不可以包含重复的三元组。
+
+示例 1：
+输入：nums = [-1,0,1,2,-1,-4]
+输出：[[-1,-1,2],[-1,0,1]]
+解释：
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
+不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。
+注意，输出的顺序和三元组的顺序并不重要。
+
+示例 2：
+输入：nums = [0,1,1]
+输出：[]
+解释：唯一可能的三元组和不为 0 。
+
+示例 3：
+输入：nums = [0,0,0]
+输出：[[0,0,0]]
+解释：唯一可能的三元组和为 0 。
+</pre>
+<script>
+    /**
+     * @param {number[]} nums
+     * @return {number[][]}
+     * 思路：
+     *    1、nums不存在或者长度小于3时候，直接返回[]；
+     *    2、对原有数组进行排序，排序后固定一个数cur，再使用左右指针指向后面的两端，数字分别为leftNum和rightNum，计算三个数的sum是否满足为0，
+     *    满足则添加进结果数组result
+     *    3、遍历中如果nums[i]>0，就意味数组之和不为0，直接中断循环；
+     *    4、如果nums[i]===nums[i-1],则说明数字重复，会导致结果重复，应该跳过；
+     *    4、当sum===0时，leftNum和num[leftIndex+1]会导致结果重复，应该跳过,leftIndex++;
+     *    5、当sum===0时，rightNum和num[rightIndex-1]会导致结果重复，应该跳过，rightIndex--;
+     */
+    const threeSum = function (nums) {
+        if (!nums || nums.length < 3) return []
+        nums = nums.sort((a, b) => a - b)
+        let result = [], len = nums.length
+        for (let i = 0; i < nums.length; i++) {
+            const cur = nums[i]
+            if (cur > 0) break
+            if (i > 0 && cur === nums[i - 1]) continue
+            let leftIndex = i + 1, rightIndex = len - 1
+            while (leftIndex < rightIndex) {
+                const leftNum = nums[leftIndex],rightNum = nums[rightIndex]
+                const sum = cur + leftNum + rightNum
+                if (sum === 0) {
+                    result.push([cur, leftNum, rightNum])
+                    while (leftIndex < rightIndex && leftNum === nums[leftIndex + 1]) leftIndex++
+                    while (leftIndex < rightIndex && rightNum === nums[rightIndex - 1]) rightIndex--
+                    leftIndex++
+                    rightIndex--
+                } else if (sum < 0) {
+                    leftIndex++
+                } else {
+                    rightIndex--
+                }
+            }
+        }
+        return result
+    };
+</script>
+</body>
+</html>
